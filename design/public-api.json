@@ -1,0 +1,100 @@
+{
+	"apiDefinitions": [
+		{
+			"comment": "文件上传",
+			"javaClassName": "File_Upload_Api",
+			"responseDefinition": {
+				"fieldDefinitions": [
+					{
+						"comment": "已上传的文件列表",
+						"javaType": "java.util.List<UploadedFile>",
+						"name": "data",
+						"required": true
+					}
+				]
+			},
+			"type": "read"
+		}
+	],
+	"comment": "micro-file-server-public-api",
+	"deployDefinition": {
+		"localMavenProjectHome": "/Users/xuzewei/microprograms/micro-file-server",
+		"localSshPassword": "xzw",
+		"localSshPort": 22,
+		"localSshUser": "xuzewei",
+		"remoteJavaApplicationHome": "/opt/microprograms/micro-file-server",
+		"remoteSshPassword": "Xuzewei2017",
+		"remoteSshPort": 22,
+		"remoteSshUser": "root"
+	},
+	"description": "小提示：利用浏览器搜索功能Ctrl+F可快速定位API接口。每个接口都已定义快速跳转书签，点击超链接即可跳转。",
+	"errorCodeDefinitions": [
+		{
+			"code": 1010,
+			"message": "文件上传失败",
+			"name": "upload_fail"
+		}
+	],
+	"javaPackageName": "com.github.microprograms.micro_file_server.public_api",
+	"modelDefinitions": [
+		{
+			"comment": "已上传的文件",
+			"fieldDefinitions": [
+				{
+					"comment": "表单字段名",
+					"example": "example",
+					"javaType": "String",
+					"name": "fieldName",
+					"required": true
+				},
+				{
+					"comment": "文件类型",
+					"example": "example",
+					"javaType": "String",
+					"name": "contentType",
+					"required": true
+				},
+				{
+					"comment": "文件大小",
+					"example": "example",
+					"javaType": "Long",
+					"name": "size",
+					"required": true
+				},
+				{
+					"comment": "原始文件名",
+					"example": "example",
+					"javaType": "String",
+					"name": "originFileName",
+					"required": true
+				},
+				{
+					"comment": "新文件名",
+					"example": "example",
+					"javaType": "String",
+					"name": "newFileName",
+					"required": true
+				},
+				{
+					"comment": "访问路径",
+					"example": "example",
+					"javaType": "String",
+					"name": "url",
+					"required": true
+				}
+			],
+			"javaClassName": "UploadedFile"
+		}
+	],
+	"serverAddressDefinition": {
+		"host": "47.104.17.187",
+		"port": 8082,
+		"url": "/micro-file-server"
+	},
+	"showdocDefinition": {
+		"apiKey": "2958c2316a267f5df1486e00799398b2465052401",
+		"apiToken": "d1855c956231a22d5204940d8a360b3d1563868853",
+		"url": "https://www.showdoc.cc/server/api/item/updateByApi"
+	},
+	"version": "v1.0.0"
+}
