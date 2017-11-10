@@ -4,9 +4,14 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jetty.server.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MicroFileServer {
+    private static final Logger log = LoggerFactory.getLogger(MicroFileServer.class);
+
     public static void main(String[] args) throws Exception {
         CommandLineParser parser = new DefaultParser();
         Options options = new Options();
@@ -32,6 +37,7 @@ public class MicroFileServer {
             System.exit(0);
         }
         Config.setCommandLine(commandLine);
+        log.info("Command line args: {}", StringUtils.join(commandLine.getArgs(), " "));
         String port = commandLine.getOptionValue('p');
         Server server = new Server(Integer.parseInt(port));
         server.setHandler(new HttpRequestHandler());
