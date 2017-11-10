@@ -92,8 +92,8 @@
 		"url": "/micro-file-server"
 	},
 	"showdocDefinition": {
-		"apiKey": "2958c2316a267f5df1486e00799398b2465052401",
-		"apiToken": "d1855c956231a22d5204940d8a360b3d1563868853",
+		"apiKey": "58deef9212986faff618559ea648d5c32073456200",
+		"apiToken": "f761be26b4a4564ad9f0a12237189c441205943105",
 		"url": "https://www.showdoc.cc/server/api/item/updateByApi"
 	},
 	"version": "v1.0.0"

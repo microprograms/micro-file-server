@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.github.microprograms</groupId>
             <artifactId>micro-api-sdk</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.5.r1</version>
         </dependency>
         <dependency>
             <groupId>commons-cli</groupId>
