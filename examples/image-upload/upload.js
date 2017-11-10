@@ -148,10 +148,10 @@
             },
             dnd: '#dndArea',
             paste: '#uploader',
-            swf: '../../dist/Uploader.swf',
+            swf: './webuploader/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '../../server/fileupload.php',
+            server: 'http://47.104.17.187:8082/micro-file-server',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -199,6 +199,10 @@
         //         return 0;
         //     });
         // });
+
+        uploader.on('uploadSuccess', function(file, response) {
+        	alert('uploadSuccess, response=' + JSON.stringify(response));
+        });
 
         // 添加“添加文件”的按钮，
         uploader.addButton({
@@ -477,7 +481,7 @@
                 case 'finish':
                     stats = uploader.getStats();
                     if ( stats.successNum ) {
-                        alert( '上传成功' );
+                        // alert( '上传成功' );
                     } else {
                         // 没有成功的图片，重设
                         state = 'done';
