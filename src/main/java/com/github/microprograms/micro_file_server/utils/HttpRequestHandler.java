@@ -51,18 +51,14 @@ public class HttpRequestHandler extends AbstractHandler {
         PrintWriter out = response.getWriter();
         try {
             String localStoragePath = MicroFileServer.getConfig().getLocalStoragePath();
-            String localTempPath = request.getServletContext().getRealPath("/temp");
+            String localTempPath = MicroFileServer.getConfig().getLocalTempPath();
             File localStorageFile = new File(localStoragePath);
             if (!localStorageFile.exists()) {
                 localStorageFile.mkdirs();
             }
-            File localTempFile = new File(localTempPath);
-            if (!localTempFile.exists()) {
-                localTempFile.mkdirs();
-            }
             DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
             diskFileItemFactory.setSizeThreshold(20 * 1024 * 1024);
-            diskFileItemFactory.setRepository(localTempFile);
+            diskFileItemFactory.setRepository(new File(localTempPath));
             ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
             servletFileUpload.setHeaderEncoding("UTF-8");
             List<FileItem> fileItems = servletFileUpload.parseRequest(request);

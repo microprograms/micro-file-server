@@ -39,6 +39,7 @@ public class MicroFileServer {
             System.exit(0);
         }
         config.setLocalStoragePath(commandLine.getOptionValue('l'));
+        config.setLocalTempPath(System.getProperty("java.io.tmpdir"));
         config.setUrlFormat(commandLine.getOptionValue('f'));
         log.info("parsed config: {}", JSON.toJSONString(config));
         String port = commandLine.getOptionValue('p');
