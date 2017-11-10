@@ -1,15 +1,22 @@
 package com.github.microprograms.micro_file_server.utils;
 
-import org.apache.commons.cli.CommandLine;
-
 public class Config {
-    private static CommandLine commandLine;
+    private String localStoragePath;
+    private String urlFormat;
 
-    public static CommandLine getCommandLine() {
-        return commandLine;
+    public String getLocalStoragePath() {
+        return localStoragePath;
     }
 
-    public static void setCommandLine(CommandLine commandLine) {
-        Config.commandLine = commandLine;
+    public void setLocalStoragePath(String localStoragePath) {
+        this.localStoragePath = localStoragePath;
+    }
+
+    public String getUrlFormat() {
+        return urlFormat;
+    }
+
+    public void setUrlFormat(String urlFormat) {
+        this.urlFormat = urlFormat;
     }
 }

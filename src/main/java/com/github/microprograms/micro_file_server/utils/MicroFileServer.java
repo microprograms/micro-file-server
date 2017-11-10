@@ -4,13 +4,15 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
-import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jetty.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
+
 public class MicroFileServer {
     private static final Logger log = LoggerFactory.getLogger(MicroFileServer.class);
+    private static final Config config = new Config();
 
     public static void main(String[] args) throws Exception {
         CommandLineParser parser = new DefaultParser();
@@ -36,12 +38,17 @@ public class MicroFileServer {
             System.out.println("Missing urlFormat parameter");
             System.exit(0);
         }
-        Config.setCommandLine(commandLine);
-        log.info("Command line args: {}", StringUtils.join(commandLine.getArgs(), " "));
+        config.setLocalStoragePath(commandLine.getOptionValue('l'));
+        config.setUrlFormat(commandLine.getOptionValue('f'));
+        log.info("parsed config: {}", JSON.toJSONString(config));
         String port = commandLine.getOptionValue('p');
         Server server = new Server(Integer.parseInt(port));
         server.setHandler(new HttpRequestHandler());
         server.start();
         server.join();
+    }
+
+    public static Config getConfig() {
+        return config;
     }
 }

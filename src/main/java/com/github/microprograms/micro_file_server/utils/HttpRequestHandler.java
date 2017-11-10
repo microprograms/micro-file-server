@@ -50,7 +50,7 @@ public class HttpRequestHandler extends AbstractHandler {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         PrintWriter out = response.getWriter();
         try {
-            String localStoragePath = Config.getCommandLine().getOptionValue('l');
+            String localStoragePath = MicroFileServer.getConfig().getLocalStoragePath();
             String localTempPath = request.getServletContext().getRealPath("/temp");
             File localStorageFile = new File(localStoragePath);
             if (!localStorageFile.exists()) {
@@ -82,7 +82,7 @@ public class HttpRequestHandler extends AbstractHandler {
                         newFileName = UUID.randomUUID().toString().concat(suffix);
                         uploadedFile.setNewFileName(newFileName);
                     }
-                    String urlFormat = Config.getCommandLine().getOptionValue('f');
+                    String urlFormat = MicroFileServer.getConfig().getUrlFormat();
                     uploadedFile.setUrl(String.format(urlFormat, newFileName));
                     resp.getData().add(uploadedFile);
                     InputStream is = null;
