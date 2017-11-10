@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -26,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.github.microprograms.micro_api_runtime.exception.MicroApiExecuteException;
 import com.github.microprograms.micro_file_server.public_api.ErrorCodeEnum;
 import com.github.microprograms.micro_file_server.public_api.File_Upload_Api.Resp;
 import com.github.microprograms.micro_file_server.public_api.UploadedFile;
@@ -66,11 +68,17 @@ public class HttpRequestHandler extends AbstractHandler {
             while (iterator.hasNext()) {
                 FileItem fileItem = iterator.next();
                 if (!fileItem.isFormField()) {
+                    if (fileItem.getSize() == 0) {
+                        throw new MicroApiExecuteException(ErrorCodeEnum.file_size_cannot_be_zero);
+                    }
                     UploadedFile uploadedFile = new UploadedFile();
                     uploadedFile.setFieldName(fileItem.getFieldName());
                     uploadedFile.setContentType(fileItem.getContentType());
                     uploadedFile.setSize(fileItem.getSize());
                     String originFileName = fileItem.getName();
+                    if (StringUtils.isBlank(originFileName)) {
+                        throw new MicroApiExecuteException(ErrorCodeEnum.the_original_file_name_cannot_be_obtained);
+                    }
                     uploadedFile.setOriginFileName(originFileName);
                     String newFileName = null;
                     if (originFileName != null) {
@@ -95,6 +103,9 @@ public class HttpRequestHandler extends AbstractHandler {
                     }
                 }
             }
+        } catch (MicroApiExecuteException e) {
+            resp.setCode(e.getResponseCode().getCode());
+            resp.setMessage(e.getResponseCode().getMessage());
         } catch (Throwable e) {
             log.error("upload fail", e);
             resp.setCode(ErrorCodeEnum.upload_fail.getCode());

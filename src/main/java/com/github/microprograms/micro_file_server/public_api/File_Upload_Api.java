@@ -7,7 +7,7 @@ import com.github.microprograms.micro_api_runtime.model.Request;
 import com.github.microprograms.micro_entity_definition_runtime.annotation.Required;
 
 @Comment(value = "文件上传")
-@MicroApiAnnotation(type = "read", version = "v1.0.0")
+@MicroApiAnnotation(type = "read", version = "v1.0.1")
 public class File_Upload_Api {
 
     public static Response execute(Request request) throws Exception {

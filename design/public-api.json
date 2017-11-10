@@ -33,6 +33,16 @@
 			"code": 1010,
 			"message": "文件上传失败",
 			"name": "upload_fail"
+		},
+		{
+			"code": 1011,
+			"message": "文件大小不能为0",
+			"name": "file_size_cannot_be_zero"
+		},
+		{
+			"code": 1012,
+			"message": "无法获取原始文件名",
+			"name": "the_original_file_name_cannot_be_obtained"
 		}
 	],
 	"javaPackageName": "com.github.microprograms.micro_file_server.public_api",
@@ -96,5 +106,5 @@
 		"apiToken": "f761be26b4a4564ad9f0a12237189c441205943105",
 		"url": "https://www.showdoc.cc/server/api/item/updateByApi"
 	},
-	"version": "v1.0.0"
+	"version": "v1.0.1"
 }
